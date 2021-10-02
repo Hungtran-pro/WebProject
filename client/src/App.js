@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import * as ReactStrap from 'react-bootstrap';
+import * as ReactStrap from 'react-bootstrap'
 
 function App() {
   return (
