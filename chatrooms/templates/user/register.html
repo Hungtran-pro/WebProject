@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Đăng Ký
+{% endblock title %}
+{% block content %}
+<div class="col-md-8 offset-md-2" >
+    <div class="row" style="background: url(https://chiase24.com/wp-content/uploads/2019/08/T%E1%BB%95ng-h%E1%BB%A3p-h%C3%ACnh-n%E1%BB%81n-galaxy-wallpaper-%C4%91%E1%BA%B9p-nh%E1%BA%A5t-1.jpg); height: 900px;">
+        <div class="col-md-6 offset-md-3">
+            <h1 style="color: white;">Register</h1>
+            {% if message %}
+            <h4 style="color:red"> {{message}}</h4>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label style="color: white;" for="">{{field.label}}</label>
+                    {{field}}
+                    {% if field.errors %}
+                    {% for error in field.errors %}
+                    <p style="color:red">{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <label style="color: white; margin-bottom: 30px;"><input name="remember_me" type="checkbox"> Remember Me</label>
+                <input  style="margin-bottom: 30px;" type="submit" class="btn btn-success btn-lg btn-block" value="Đăng Nhập">
+            </form>
+            <p style="color: white; ">Bạn đã có tài khoản<a href="{% url 'login'%}"><span style="color:red">Click here to Login</span></a></p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
