@@ -5,9 +5,10 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
 from django.views.generic.base import TemplateView
-
+from django.urls import reverse_lazy
 from .models import Message
 class Index(LoginRequiredMixin,TemplateView):
+	login_url= reverse_lazy('login')
 	template_name = 'chatrooms/index.html'
 
 	def get_context_data(self, **kwargs) :

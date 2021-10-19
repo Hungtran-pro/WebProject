@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'channels',
     'chatrooms',
-
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +82,14 @@ CHANNEL_LAYERS = {
     }
 }
 
+
+# Login & auth
+
+LOGIN_REDIRECT_URL = 'index'
+
+LOGIN_URL = 'login'
+
+LOGOUT_REDIRECT_URL = 'login'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
