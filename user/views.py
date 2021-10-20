@@ -1,3 +1,20 @@
 from django.shortcuts import render
-
-# Create your views here.
+from django.contrib.auth import authenticate,login
+from django.shortcuts import redirect,render,HttpResponseRedirect
+from .forms import Register
+def Register_User(request):
+    form = Register
+    message=''
+    if request.method == 'POST':
+        form =Register(request.POST)
+        if form.is_valid():
+            form.save_user()
+            return redirect('login')
+    return render(
+        request=request,
+        template_name='user/register.html',
+        context={
+            'form':form,
+            'message':message
+        }
+    )
