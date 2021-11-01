@@ -1,12 +1,19 @@
+from django import forms
+from django.conf.urls import url
+from django.contrib.auth import models
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.db.models import F, Q
+from django.forms import fields, widgets
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render,redirect
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from .models import Message
+from .forms import EditProfile
+from django.urls import reverse
+
 class Index(LoginRequiredMixin,TemplateView):
 	login_url= reverse_lazy('login')
 	template_name = 'chatrooms/index.html'
@@ -44,3 +51,16 @@ class MessagesAPIView(View):
         ).order_by('timestamp').values('username', 'message', 'timestamp')
 
         return JsonResponse(list(result), safe=False)
+
+class Profile(LoginRequiredMixin,TemplateView):
+	template_name = 'profile/profile.html'
+	context_object_name='profile'
+
+def Edit_Profile(request):
+    form = EditProfile
+    message=''
+    if request.method == 'POST':
+        form =EditProfile(request.POST)
+        if form.is_valid():
+            form.save_user()
+            return redirect('username')
