@@ -55,7 +55,19 @@ class MessagesAPIView(View):
 class Profile(LoginRequiredMixin,TemplateView):
 	template_name = 'profile/profile.html'
 	context_object_name='profile'
+class Receiver_Profile(LoginRequiredMixin,TemplateView):
+	models = Message
+	template_name = 'profile/receiver_profile.html'
+	context_object_name='receiver_profile'
+	def dispatch(self, request, *args, **kwargs):
+		receiver_username = kwargs['username']
+		kwargs['receiver'] =get_object_or_404(User,username=receiver_username)
+		return super().dispatch(request, *args, **kwargs)
 
+	def get_context_data(self, **kwargs) :
+		context = super().get_context_data(**kwargs)
+		context['receiver']= kwargs['receiver']
+		return context
 def Edit_Profile(request):
     form = EditProfile
     message=''
