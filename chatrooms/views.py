@@ -17,12 +17,19 @@ from django.urls import reverse
 class Index(LoginRequiredMixin,TemplateView):
 	login_url= reverse_lazy('login')
 	template_name = 'chatrooms/index.html'
-
+	
 	def get_context_data(self, **kwargs) :
 		context = super().get_context_data(**kwargs)
-		context['users']=User.objects.exclude(id=self.request.user.id).values('username')
+		context['users']=User.objects.exclude(id=self.request.user.id).values('username','first_name','last_name')
 		return context	
-
+	def get_queryset(self):
+		all_users = User.objects.all()
+		search = self.request.GET.get('search')
+		if search:
+			all_users=User.objects.filter(
+        	Q(first_name__icontains=search) |
+			Q(last_name__icontains=search))
+		return all_users
 class Room(LoginRequiredMixin,TemplateView):
 	template_name = 'chatrooms/room.html'
 	

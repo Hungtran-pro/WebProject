@@ -18,14 +18,21 @@
     <h1 class="font-weight-bold">Chat</h1>
     <div class="card card-body mx-auto text-left">
         <div class="btn-group btn-block mb-4" role="group">
-            <a class="btn btn-primary" role="button" href="{{user.id}}/profile">{{ user.username }} ({{ user.email }})</a>
+            <a class="btn btn-primary" role="button" href="{{user.username}}/profile">{{ user.username }} ({{ user.email }})</a>
             <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Sign out</a>
         </div>  
-        <h3>Users</h3>
+        <div>
+            <h3>Friends:</h3>
+            <form class="d-flex" action="{% url 'index' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+    
+        </div>
         <div class="list-group">
-            {% for user_dict in users %}
+            {% for user_dict in users %}    
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{user_dict.username}}</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{user_dict.first_name}} {{user_dict.last_name}}</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% build_chat_url user.username user_dict.username %}">Inbox</a></li>
                   <li><a class="dropdown-item" href="{{user_dict.username}}/profile">Profile</a></li>
