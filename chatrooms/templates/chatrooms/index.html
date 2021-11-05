@@ -35,7 +35,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{user_dict.first_name}} {{user_dict.last_name}}</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% build_chat_url user.username user_dict.username %}">Inbox</a></li>
-                  <li><a class="dropdown-item" href="{{user_dict.username}}/profile">Profile</a></li>
+                  <li><a class="dropdown-item" href="{{user_dict.username}}/receiverprofile">Profile</a></li>
                 </ul>
               </li>
             <!-- <a href="{% build_chat_url user.username user_dict.username %}" class="list-group-item list-group-item-action">{{ user_dict.username }}</a> -->

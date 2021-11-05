@@ -49,6 +49,15 @@ class Register(Form):
             }
         )
     )
+    # Choices=(
+    #     ('1','Male'),
+    #     ('2','Female'),
+    #     ('3','Other')
+    # )
+    # sex=forms.CharField(
+    #     label="Sex",
+    #     widget=forms.Select(choices=Choices)
+    # )
     email = forms.CharField(
         label="Email",
         widget=forms.EmailInput(
@@ -88,6 +97,7 @@ class Register(Form):
             password=self.cleaned_data['password'],
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
+            # sex=self.cleaned_data['sex'],
             email=self.cleaned_data['email'],
             **extra_fields
 
