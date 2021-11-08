@@ -73,12 +73,14 @@ class EditProfile(Form):
             raise ValidationError("Your Email exists")
         except User.DoesNotExist:
             return inputed_email
+            
     def clean_confirm_password(self):
         inputed_password = self.cleaned_data['password']
         inputed_confirm_password =self.cleaned_data['confirm_password']   
         if inputed_password != inputed_confirm_password:
             raise ValidationError("password and confirm password do match")
         return inputed_confirm_password
+
     def save_user(self,**extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
