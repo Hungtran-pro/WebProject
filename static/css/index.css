@@ -1,0 +1,60 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.text-center { /* Background */
+    background-image: url("../images/blue_nova_by_st3doom_de0h1is.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Content of page */
+.container {
+    padding: 0;
+}
+
+nav {
+    border-radius: 12px;
+}
+
+.nav-item:hover {
+    background-color: #e3e3e3 !important;
+}
+
+.home_button {
+    width: 50px;
+    height: 50px;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+/* List Friends */
+.offcanvas {
+    border-radius: 12px 0px 0px 12px;
+}
+
+/* .offcanvas-body form {
+
+} */
+
+/* List Friends' item */
+.friend {
+    margin: 20px 0px;
+    padding: 10px 0px;
+}
+
+.friend a {
+    text-decoration: none;
+}
+
+.friend:hover {
+    background-color: #e3e3e3;
+    text-decoration: none;
+}
