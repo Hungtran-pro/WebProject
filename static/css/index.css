@@ -35,6 +35,10 @@ nav {
     font-size: 30px;
 }
 
+.log-out {
+    color: blue;
+}
+
 /* List Friends */
 .offcanvas {
     border-radius: 12px 0px 0px 12px;

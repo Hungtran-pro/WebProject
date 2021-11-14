@@ -21,18 +21,19 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
-    <h1 class="font-weight-bold">Chat</h1>
     <div class="card card-body mx-auto text-left">
-        <h3>To: {{ receiver.username }} ({{ receiver.email }}) <a class="btn btn-danger float-right"
+        <h3>To: {{ receiver.username }} <a class="btn btn-danger float-right"
                 href="{% url 'index' %}" role="button">Exit</a></h3>
         <div id="chat-messages" class="card card-body card-chat text-left">
         </div>
         <input id="message" class="form-control mt-2 " type="text" placeholder="Type your message...">
         <button id="send-message" class="btn btn-primary float-right mt-2">Send</button>
     </div>
+
+
 </div>
+
 <script src="{% static 'reconnecting-websocket.js'%}"></script>
 <script type="text/javascript">
     $(function () {

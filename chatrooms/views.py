@@ -21,7 +21,8 @@ class Index(LoginRequiredMixin,TemplateView):
 	def get_context_data(self, **kwargs) :
 		context = super().get_context_data(**kwargs)
 		context['users']=User.objects.exclude(id=self.request.user.id).values('username','first_name','last_name')
-		return context	
+		return context
+
 	def get_queryset(self):
 		all_users = User.objects.all()
 		search = self.request.GET.get('search')
@@ -30,6 +31,7 @@ class Index(LoginRequiredMixin,TemplateView):
         	Q(first_name__icontains=search) |
 			Q(last_name__icontains=search))
 		return all_users
+
 class Room(LoginRequiredMixin,TemplateView):
 	template_name = 'chatrooms/room.html'
 	
@@ -61,7 +63,21 @@ class MessagesAPIView(View):
 
 class Profile(LoginRequiredMixin,TemplateView):
 	template_name = 'profile/profile.html'
-	context_object_name='profile'
+	
+	def get_context_data(self, **kwargs) :
+		context = super().get_context_data(**kwargs)
+		context['users']=User.objects.exclude(id=self.request.user.id).values('username','first_name','last_name')
+		return context
+			
+	def get_queryset(self):
+		all_users = User.objects.all()
+		search = self.request.GET.get('search')
+		if search:
+			all_users=User.objects.filter(
+        	Q(first_name__icontains=search) |
+			Q(last_name__icontains=search))
+		return all_users
+
 class Receiver_Profile(LoginRequiredMixin,TemplateView):
 	models = Message
 	template_name = 'profile/receiver_profile.html'
@@ -75,6 +91,7 @@ class Receiver_Profile(LoginRequiredMixin,TemplateView):
 		context = super().get_context_data(**kwargs)
 		context['receiver']= kwargs['receiver']
 		return context
+
 def Edit_Profile(request):
     form = EditProfile
     message=''

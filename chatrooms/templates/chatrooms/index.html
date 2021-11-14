@@ -23,19 +23,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <button class="btn mx-auto nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                        <i class='bx bxl-messenger icon'></i>
+                    <button class="nav-item btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class='nav-link bx bxl-messenger icon'></i>
                     </button>
-                    <li class="nav-item active">
-                        <a class="nav-link" role="button" href="/chat/{{user.username}}/profile">
-                            <i class='bx bx-user-circle icon' ></i>
+                    <button class="nav-item btn" type="button">
+                        <a role="button" href="/chat/{{user.username}}/profile">
+                            <i class='nav-link bx bx-user-circle icon' ></i>
                         </a>
-                    </li>
+                    </button>
                 </ul>
-
-                <a class="nav-link" href="{% url 'logout' %}">
-                    <i class='bx bx-log-out icon' ></i>
-                </a>
+                <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                    <button class="nav-item btn" type="button">
+                        <a role="button" href="{% url 'logout' %}">
+                            <i class='nav-link bx bx-log-out icon log-out' ></i>
+                        </a>
+                    </button>
+                </ul>
             </div>
         </div>
     </nav>
@@ -67,7 +70,7 @@
     <br>
 
     <!-- testing -->
-    <!-- <div class="card card-body mx-auto text-left">
+    <div class="card card-body mx-auto text-left">
         <div>
             <h3>Your Friends:</h3>
             <form class="d-flex" action="{% url 'index' %}">
@@ -90,7 +93,7 @@
             <p class="text-muted">Ups! no users to chat with.</p>
             {% endfor %}
         </div>
-    </div> -->
+    </div>
 </div>
 <!-- <a href="{% build_chat_url user.username user_dict.username %}" class="list-group-item list-group-item-action">{{ user_dict.username }}</a> -->
 {% endblock %}
