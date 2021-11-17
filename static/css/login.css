@@ -26,9 +26,8 @@ section .content {
 }
 
 section .content .background {
-    background-image:url('../images/magic_door___photoshop_art_by_neoartland_dekwv6z.jpg');
     background-position: center;
-    background-color: #B2D0D1;
+    background-color: #ffffff;
     background-size:  cover;
 
     border-width: 5px;
@@ -38,21 +37,21 @@ section .content .background {
     justify-content: center;
     align-items: center;
     width: 25%;
-    height: 70%;
+    height: 50%;
     border-radius: 20px;
 } 
 
 section .content .background .form {
-    width: 60%;
+    width: 65%;
 }  
 
 section .content .background .form h1 {
     color: #607d8b;
     font-weight: 500;
-    font-size: 1.5em;
+    font-size: 2em;
     text-transform: uppercase;
     margin-bottom: 20px;
-    border-bottom: 4px solid #ff4584;
+    border-bottom: 4px solid #11694E;
     display: inline-block;
     letter-spacing: 1px;
 }
@@ -62,7 +61,7 @@ section .content .background .form .input-form {
 }
 
 section .content .background .form .input-form input[type="submit"] {
-    background: #ff4584;
+    background: #15997A;
     color: #fff;
     outline: none;
     border: none;
@@ -76,7 +75,7 @@ section .content .background .form .input-form input[type="submit"] {
 }
 
 section .content .background .form .input-form input[type="submit"]:hover {
-    background: #f53677;
+    background: #01796F;
 }
 
 section .content .background .form .input-form span {
@@ -104,5 +103,5 @@ section .content .background .form p {
 }
 
 section .content .background .form p a {
-    color: #ff4584;
+    color: #235E52;
 }

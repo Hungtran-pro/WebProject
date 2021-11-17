@@ -6,7 +6,7 @@
 }
 
 .text-center {
-    background-image: url("../images/blue_nova_by_st3doom_de0h1is.jpg");
+    background-image: url("../images/BackGround.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,6 +18,7 @@
 
 nav {
     border-radius: 12px;
+    margin-top: 3vh;
 }
 
 .nav-item:hover {
@@ -53,4 +54,13 @@ nav {
 .friend:hover {
     background-color: #e3e3e3;
     text-decoration: none;
+}
+
+.pro-info {
+    margin: auto;
+    margin-top: 10vh;
+    width: 40vw;
+    height: 30vh;
+    background-color: #fff;
+    border-radius: 12px;
 }

@@ -58,9 +58,20 @@
             </form>
 
             {% for user_dict in users %}
-            <div class="friend">
-                <a href="{% build_chat_url user.username user_dict.username %}">{{user_dict.first_name}} {{user_dict.last_name}}</a>
+            <div class="friend flex-container">
+                <div>
+                    <button class="btn">
+                        <a href="{% build_chat_url user.username user_dict.username %}">{{user_dict.first_name}} {{user_dict.last_name}}</a>
+                    </button>
+                </div>
+                
+                <button class="btn">
+                    <a href="{{user_dict.username}}/receiverprofile">
+                        <i class='bx bxs-user-account icon receiver'></i>
+                    </a>
+                </button>                
             </div>
+            
             {% empty %}
             <p class="text-muted">Ups! no users to chat with.</p>
             {% endfor %}
@@ -70,7 +81,7 @@
     <br>
 
     <!-- testing -->
-    <div class="card card-body mx-auto text-left">
+    <!-- <div class="card card-body mx-auto text-left">
         <div>
             <h3>Your Friends:</h3>
             <form class="d-flex" action="{% url 'index' %}">
@@ -93,7 +104,7 @@
             <p class="text-muted">Ups! no users to chat with.</p>
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 </div>
 <!-- <a href="{% build_chat_url user.username user_dict.username %}" class="list-group-item list-group-item-action">{{ user_dict.username }}</a> -->
 {% endblock %}

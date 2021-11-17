@@ -6,8 +6,8 @@
 }
 
 
-.text-center { /* Background */
-    background-image: url("../images/blue_nova_by_st3doom_de0h1is.jpg");
+.text-center {
+    background-image: url("../images/BackGround.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,6 +20,7 @@
 
 nav {
     border-radius: 12px;
+    margin-top: 3vh;
 }
 
 .nav-item:hover {
@@ -44,10 +45,6 @@ nav {
     border-radius: 12px 0px 0px 12px;
 }
 
-/* .offcanvas-body form {
-
-} */
-
 /* List Friends' item */
 .friend {
     margin: 20px 0px;
@@ -58,7 +55,11 @@ nav {
     text-decoration: none;
 }
 
-.friend:hover {
+/* .friend:hover {
     background-color: #e3e3e3;
     text-decoration: none;
+} */
+
+.receiver {
+    position: relative;
 }
