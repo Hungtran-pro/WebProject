@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from .models import MyUser
 from django.core.exceptions import ValidationError
 from django.forms import Form
 from django import forms
@@ -71,17 +72,17 @@ class Register(Form):
     def clean_username(self):
         inputed_username = self.cleaned_data['username']
         try:
-            User.objects.get(username=inputed_username)
+            MyUser.objects.get(username=inputed_username)
             raise ValidationError("Your username exists")
-        except User.DoesNotExist :
+        except MyUser.DoesNotExist :
             return inputed_username
     
     def clean_email(self):
         inputed_email = self.cleaned_data['email']
         try:
-            User.objects.get(email=inputed_email)
+            MyUser.objects.get(email=inputed_email)
             raise ValidationError("Your Email exists")
-        except User.DoesNotExist:
+        except MyUser.DoesNotExist:
             return inputed_email
 
     def clean_confirm_password(self):
@@ -95,7 +96,7 @@ class Register(Form):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
-        User.objects.create_user(
+        MyUser.objects.create_user(
             username=self.cleaned_data['username'],
             password=self.cleaned_data['password'],
             first_name=self.cleaned_data['first_name'],
@@ -109,7 +110,12 @@ class EditProfile(forms.ModelForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
+    sex = forms.CharField(required=False)
+    age = forms.CharField(required=False)
+    address = forms.CharField(required=False)
+
+
 
     class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'email']   
+        model = MyUser
+        fields = ['first_name', 'last_name','age','sex','address','email']   
