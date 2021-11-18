@@ -110,12 +110,12 @@ class EditProfile(forms.ModelForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
+    dob=forms.CharField(label='Date of Birth',required=False)
     sex = forms.CharField(required=False)
-    age = forms.CharField(required=False)
     address = forms.CharField(required=False)
 
 
 
     class Meta:
         model = MyUser
-        fields = ['first_name', 'last_name','age','sex','address','email']   
+        fields = ['first_name', 'last_name','dob','sex','address','email']   

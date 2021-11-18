@@ -72,7 +72,7 @@ class Profile(LoginRequiredMixin,TemplateView):
 		all_users = MyUser.objects.all()
 		search = self.request.GET.get('search')
 		if search:
-			all_users=User.objects.filter(
+			all_users=MyUser.objects.filter(
         	Q(first_name__icontains=search) |
 			Q(last_name__icontains=search))
 		return all_users
@@ -85,7 +85,7 @@ class Receiver_Profile(LoginRequiredMixin,TemplateView):
 		receiver_username = kwargs['username']
 		kwargs['receiver'] =get_object_or_404(MyUser,username=receiver_username)
 		return super().dispatch(request, *args, **kwargs)
-
+	
 
 	def get_context_data(self, **kwargs) :
 		context = super().get_context_data(**kwargs)

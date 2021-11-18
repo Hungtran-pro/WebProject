@@ -24,6 +24,7 @@ def edit(request):
         user_form=EditProfile(request.POST,instance=request.user)
         if user_form.is_valid():
             user_form.save()
+            return redirect("index")
     else:
         user_form=EditProfile(instance=request.user)	
     return render(
