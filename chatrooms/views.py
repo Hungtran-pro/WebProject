@@ -11,9 +11,8 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from .models import Message
-from .forms import EditProfile
 from django.urls import reverse
-
+from django.views.generic.edit import UpdateView
 class Index(LoginRequiredMixin,TemplateView):
 	login_url= reverse_lazy('login')
 	template_name = 'chatrooms/index.html'
@@ -87,16 +86,20 @@ class Receiver_Profile(LoginRequiredMixin,TemplateView):
 		kwargs['receiver'] =get_object_or_404(User,username=receiver_username)
 		return super().dispatch(request, *args, **kwargs)
 
+
 	def get_context_data(self, **kwargs) :
 		context = super().get_context_data(**kwargs)
 		context['receiver']= kwargs['receiver']
+		context['users']=User.objects.exclude(id=self.request.user.id).values('username','first_name','last_name')
 		return context
 
-def Edit_Profile(request):
-    form = EditProfile
-    message=''
-    if request.method == 'POST':
-        form =EditProfile(request.POST)
-        if form.is_valid():
-            form.save_user()
-            return redirect('username')
+
+
+
+
+
+
+
+
+
+

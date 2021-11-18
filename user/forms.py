@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import Form
 from django import forms
+from django.forms.models import ModelForm
 
 class Register(Form):
     username = forms.CharField(
@@ -104,3 +105,11 @@ class Register(Form):
             **extra_fields
 
         )
+class EditProfile(forms.ModelForm):
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']   
