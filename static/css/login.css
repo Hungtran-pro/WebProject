@@ -1,0 +1,107 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+section .content {
+    background-image: url("../images/BackGround.jpg");
+    background-position: center;
+    background-color: #B2D0D1;
+    background-size:  cover;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+section .content .background {
+    background-position: center;
+    background-color: #ffffff;
+    background-size:  cover;
+
+    border-width: 5px;
+    border-color: white;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 50%;
+    border-radius: 20px;
+} 
+
+section .content .background .form {
+    width: 65%;
+}  
+
+section .content .background .form h1 {
+    color: #607d8b;
+    font-weight: 500;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #11694E;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+section .content .background .form .input-form {
+    margin-bottom: 20px;
+}
+
+section .content .background .form .input-form input[type="submit"] {
+    background: #15997A;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12),
+                0 2px 2px rgba(0,0,0,0.12),
+                0 4px 4px rgba(0,0,0,0.12),
+                0 8px 8px rgba(0,0,0,0.12),
+                0 16px 16px rgba(0,0,0,0.12);
+}
+
+section .content .background .form .input-form input[type="submit"]:hover {
+    background: #01796F;
+}
+
+section .content .background .form .input-form span {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607db8;
+    letter-spacing: 1px;
+}
+
+section .content .background .form .input-form input {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    background: transparent;
+    border-radius: 30px;
+} 
+
+section .content .background .form p {
+    color: #607d8b;
+}
+
+section .content .background .form p a {
+    color: #235E52;
+}

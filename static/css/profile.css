@@ -1,0 +1,15 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.pro-info {
+    margin: auto;
+    margin-top: 10vh;
+    width: 40vw;
+    height: 30vh;
+    background-color: #fff;
+    border-radius: 12px;
+}

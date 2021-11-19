@@ -1,0 +1,65 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.text-center {
+    background-image: url("../images/BackGround.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Content of page */
+.container {
+    padding: 0;
+}
+
+nav {
+    border-radius: 12px;
+    margin-top: 3vh;
+}
+
+.nav-item:hover {
+    background-color: #e3e3e3 !important;
+}
+
+.home_button {
+    width: 50px;
+    height: 50px;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+.log-out {
+    color: blue;
+}
+
+/* List Friends */
+.offcanvas {
+    border-radius: 12px 0px 0px 12px;
+}
+
+/* List Friends' item */
+.friend {
+    margin: 20px 0px;
+    padding: 10px 0px;
+}
+
+.friend a {
+    text-decoration: none;
+}
+
+/* .friend:hover {
+    background-color: #e3e3e3;
+    text-decoration: none;
+} */
+
+.receiver {
+    position: relative;
+}
