@@ -107,12 +107,24 @@ class Register(Form):
 
         )
 class EditProfile(forms.ModelForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-    dob=forms.CharField(label='Date of Birth',required=False)
-    sex = forms.CharField(required=False)
-    address = forms.CharField(required=False)
+    email = forms.EmailField(required=True, 
+        widget=forms.EmailInput(attrs={"class": "edit"})
+    )
+    first_name = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    last_name = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    dob=forms.CharField(label='Date of Birth',required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    sex = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    address = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
 
 
 

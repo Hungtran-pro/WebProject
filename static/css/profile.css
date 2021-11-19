@@ -5,11 +5,153 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.pro-info {
-    margin: auto;
-    margin-top: 10vh;
-    width: 40vw;
-    height: 30vh;
-    background-color: #fff;
-    border-radius: 12px;
+input:focus, textarea:focus, select:focus{
+    outline: none;
 }
+
+.pro-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-top: 100px;
+}
+
+.info-left {
+    flex: 20%;
+
+    background-color: white;
+    border-radius: 12px;
+    margin-right: 10px;
+    padding: 11px 0px;
+}
+
+.info-avatar {
+    width: 350px;
+    height: auto;
+}
+
+.info-right {
+    flex: 60%;
+    display: flex;
+
+    background-color: white;
+    border-radius: 12px;
+    margin-left: 10px;
+}
+
+.content-left {
+    flex: 40%;
+    padding: 20px 20px 20px 20px;
+    margin: auto;
+}
+
+.content-right {
+    flex: 40%;
+    padding: 20px 20px 20px 20px;
+    margin: auto;
+}
+
+.info-label {
+    font-size: 17px;
+
+    font-weight: 500;
+}
+
+.info-info {
+    font-size: 18px;
+
+    border: solid 1px #C8C8C8;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* .content-header {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0px;
+
+    border-style: solid;
+    border-width: 2px;
+} */
+
+.content-items {
+    font-size: 25px;
+    margin: 10px 0px;
+    text-align: left !important;
+}
+
+.info-manip {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 12px;
+    
+}
+
+.manip-choice {
+    flex: 100%;
+    text-decoration: none;
+    font-size: 15px;
+
+    padding: 10px 0px;
+    transition: 0.5s;
+}
+
+.manip-choice:hover {
+    text-decoration: none;
+    color: red;
+}
+
+.edit {
+    border: none;
+    width: 100%;
+}
+
+.update-info {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .pro-info {
+        margin-top: 50px;
+    }
+}
+
+@media(max-width: 800px){
+    .pro-info {
+        margin-top: 25px;
+    }
+
+    .info-left {
+        flex: 100%;
+        margin: 0;
+    }
+
+    .info-right {
+        flex: 100%;
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    .info-manip {
+        flex: 100%;
+        margin: 0;
+        margin-top: 10px;
+    }
+
+    .manip-choice:hover {
+        background-color: #e3e3e3 !important;
+    }
+
+
+}
+

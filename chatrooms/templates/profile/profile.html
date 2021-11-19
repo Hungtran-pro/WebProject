@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/chat">
-                <img src="{% static 'images/home_button.jpg' %}" class="rounded-circle home_button">
+                    <img src="{% static 'images/home_button.jpg' %}" class="rounded-circle home_button">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -78,15 +78,88 @@
     <br>
 
     <div class="pro-info">
-        <div> <h3>User:  {{user.username}}</h3> </div>
-        <div> <h3>Email: {{user.email}}</h3> </div>
-        <div> <h3>FirstName: {{user.first_name}}</h3> </div>
-        <div> <h3>LastName : {{user.last_name}}</h3> </div>
-        <div> <h3>Date of Birth : {{user.dob}}</h3> </div>
-        <div> <h3>Sex : {{user.sex}}</h3> </div>
-        <div> <h3>Address : {{user.address}}</h3> </div>
-        <p><a href="{% url 'change_password'%}">Change Password</a></p>
-        <p><a href="{% url 'edit_profile'%}">Change Information</a></p>
+        <div class="info-left">
+            <img src="{% static 'images/profile.png' %}" class="info-avatar">
+
+            <div class="info-manip">
+                <a class="btn manip-choice" href="{% url 'change_password'%}">Change Password</a>
+                <a class="btn manip-choice" href="{% url 'edit_profile'%}">Change Information</a>
+            </div>
+        </div>
+
+        <div class="info-right">
+            <div class="content-right">
+                <div class="content-items">
+                    <div class="info-label">
+                        User
+                    </div>
+                    <div class="info-info">
+                        {{user.username}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Email
+                    </div>
+                    <div class="info-info">
+                        {{user.email}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        First Name
+                    </div>
+                    <div class="info-info">
+                        {{user.first_name}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Last Name
+                    </div>
+                    <div class="info-info">
+                        {{user.last_name}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-left">
+                <div class="content-items">
+                    <div class="info-label">
+                        Date of Birth
+                    </div>
+                    <div class="info-info">
+                        {{user.dob}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Gender
+                    </div>
+                    <div class="info-info">
+                        {{user.sex}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Address
+                    </div>
+                    <div class="info-info">
+                        {{user.address}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Phone Number
+                    </div>
+                    <div class="info-info">
+                        Nope
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
     </div>
 </div>
 <!-- <a href="{% build_chat_url user.username user_dict.username %}" class="list-group-item list-group-item-action">{{ user_dict.username }}</a> -->
