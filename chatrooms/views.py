@@ -13,6 +13,7 @@ from django.urls import reverse_lazy
 from .models import Message,MyUser
 from django.urls import reverse
 from django.views.generic.edit import UpdateView
+
 class Index(LoginRequiredMixin,TemplateView):
 	login_url= reverse_lazy('login')
 	template_name = 'chatrooms/index.html'

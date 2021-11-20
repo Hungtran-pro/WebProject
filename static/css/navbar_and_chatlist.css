@@ -65,8 +65,7 @@ nav {
 }
 
 .left-side:hover {
-    background: linear-gradient(60deg, #00c3ff, #ffff1c);
-    color: honeydew;
+    background-color: #e3e3e3 !important;
 }
 
 .right-side {

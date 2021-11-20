@@ -7,7 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <link href="{% static 'css/navbar_and_chatlist.css' %}" rel="stylesheet">
-<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+<link href="{% static 'css/receiver_profile.css' %}" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 {% endblock %}
@@ -77,10 +77,78 @@
 
     <br>
 
-    <div class="receiver-info">
-        <h3>First_name:{{receiver.first_name}}</h3>
-        <h3>Last_Name:{{receiver.last_name}}</h3>
-        <h3>Email:{{receiver.email}}</h3>
+    <div class="pro-info">
+        <div class="info-left">
+            <img src="{% static 'images/profile.png' %}" class="info-avatar">
+            
+            <div>
+                <a class="btn contact-button" href="{% build_chat_url user.username receiver.username %}">Contact</a>
+            </div>
+        </div>
+
+        <div class="info-right">
+            <div class="content-right">
+                <div class="content-items">
+                    <div class="info-label">
+                        Email
+                    </div>
+                    <div class="info-info">
+                        {{receiver.email}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        First Name
+                    </div>
+                    <div class="info-info">
+                        {{receiver.first_name}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Last Name
+                    </div>
+                    <div class="info-info">
+                        {{receiver.last_name}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-left">
+                <div class="content-items">
+                    <div class="info-label">
+                        Date of Birth
+                    </div>
+                    <div class="info-info">
+                        {{receiver.dob}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Gender
+                    </div>
+                    <div class="info-info">
+                        {{receiver.sex}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Address
+                    </div>
+                    <div class="info-info">
+                        {{receiver.address}}
+                    </div>
+                </div>
+                <div class="content-items">
+                    <div class="info-label">
+                        Phone Number
+                    </div>
+                    <div class="info-info">
+                        Nope
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- <a href="{% build_chat_url user.username user_dict.username %}" class="list-group-item list-group-item-action">{{ user_dict.username }}</a> -->

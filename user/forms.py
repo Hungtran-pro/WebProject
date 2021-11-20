@@ -15,6 +15,7 @@ class Register(Form):
             }
         )
     )
+
     password = forms.CharField(
         label="PassWord",
         widget=forms.PasswordInput(
@@ -24,6 +25,7 @@ class Register(Form):
             }
         )
     )
+
     confirm_password = forms.CharField(
         label="Confirm Password",
         widget=forms.PasswordInput(
@@ -33,6 +35,7 @@ class Register(Form):
             }
         )
     )
+
     first_name = forms.CharField(
         label="First Name",
         widget=forms.TextInput(
@@ -42,6 +45,7 @@ class Register(Form):
             }
         )
     )
+
     last_name = forms.CharField(
         label="Last Name",
         widget=forms.TextInput(
@@ -69,6 +73,7 @@ class Register(Form):
             }
         )
     )
+    
     def clean_username(self):
         inputed_username = self.cleaned_data['username']
         try:
@@ -104,8 +109,8 @@ class Register(Form):
             # sex=self.cleaned_data['sex'],
             email=self.cleaned_data['email'],
             **extra_fields
-
         )
+
 class EditProfile(forms.ModelForm):
     email = forms.EmailField(required=True, 
         widget=forms.EmailInput(attrs={"class": "edit"})
@@ -125,8 +130,6 @@ class EditProfile(forms.ModelForm):
     address = forms.CharField(required=False,
         widget=forms.TextInput(attrs={"class": "edit"})
     )
-
-
 
     class Meta:
         model = MyUser

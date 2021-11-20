@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate,login
 from django.shortcuts import redirect,render,HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from .forms import Register,EditProfile
+
 def Register_User(request):
     form = Register
     message=''
@@ -19,6 +20,7 @@ def Register_User(request):
             'message':message
         }
     )
+
 def edit(request):
     if request.method=='POST':
         user_form=EditProfile(request.POST,instance=request.user)

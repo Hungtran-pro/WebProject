@@ -53,7 +53,7 @@
         <div class="offcanvas-body">
             <form class="d-flex" action="{% url 'index' %}">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <button class="btn btn-outline-success" type="submit">
+                <button class="btn btn-outline-success" type="button">
                     <i class='bx bx-search-alt' ></i>
                 </button>
             </form>
@@ -158,11 +158,8 @@
                 </div>
             </div>
         </div>
-
-        
     </div>
 </div>
-<!-- <a href="{% build_chat_url user.username user_dict.username %}" class="list-group-item list-group-item-action">{{ user_dict.username }}</a> -->
 {% endblock %}
         
 
