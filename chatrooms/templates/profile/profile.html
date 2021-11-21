@@ -94,7 +94,11 @@
                         User
                     </div>
                     <div class="info-info">
+                        {% if user.username == "" %}
+                        No info
+                        {% else %}
                         {{user.username}}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content-items">
@@ -102,7 +106,11 @@
                         Email
                     </div>
                     <div class="info-info">
+                        {% if user.email == "" %}
+                        No info
+                        {% else %}
                         {{user.email}}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content-items">
@@ -110,7 +118,11 @@
                         First Name
                     </div>
                     <div class="info-info">
+                        {% if user.first_name == "" %}
+                        No info
+                        {% else %}
                         {{user.first_name}}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content-items">
@@ -118,7 +130,11 @@
                         Last Name
                     </div>
                     <div class="info-info">
+                        {% if user.last_name == "" %}
+                        No info
+                        {% else %}
                         {{user.last_name}}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -129,7 +145,11 @@
                         Date of Birth
                     </div>
                     <div class="info-info">
+                        {% if user.dob == "" %}
+                        No info
+                        {% else %}
                         {{user.dob}}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content-items">
@@ -137,7 +157,11 @@
                         Gender
                     </div>
                     <div class="info-info">
+                        {% if user.sex == '' %}
+                        Other
+                        {% else %}
                         {{user.sex}}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content-items">
@@ -145,7 +169,11 @@
                         Address
                     </div>
                     <div class="info-info">
+                        {% if user.address == "" %}
+                        No info
+                        {% else %}
                         {{user.address}}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="content-items">

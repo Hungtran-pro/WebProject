@@ -22,7 +22,7 @@
     background-size: cover;
 }
 
-.chat-left {
+/* .chat-left {
     flex: 15%;
 
     background-color: white;
@@ -30,10 +30,10 @@
     border-radius: 0px 5px 5px 0px;
 
     margin-right: 0.5vw;
-}
+} */
 
 .chat-right {
-    flex: 75%;
+    flex: 100%;
 
     display: flex;
     flex-wrap: wrap;
