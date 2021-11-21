@@ -18,6 +18,7 @@ class Message(models.Model):
     )
     content = models.TextField()
     timestamp = models.DateTimeField(default=timezone.datetime.now())
-
+    
     def __str__(self):
         return f'{self.sender.username} to {self.receiver.username}'
+

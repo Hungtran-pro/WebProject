@@ -79,7 +79,11 @@
 
     <div class="pro-info">
         <div class="info-left">
-            <img src="{% static 'images/profile.png' %}" class="info-avatar">
+            {% if user.avatar == "" %}
+                    <img src="{% static 'images/profile.png' %}" class="info-avatar">        
+                {%else%}
+                    <img src="{{ user.avatar }}" class="info-avatar">        
+                {% endif %}
 
             <div class="info-manip">
                 <a class="btn manip-choice" href="{% url 'change_password'%}">Change Password</a>
@@ -178,10 +182,14 @@
                 </div>
                 <div class="content-items">
                     <div class="info-label">
-                        Phone Number
+                        Address
                     </div>
                     <div class="info-info">
-                        Nope
+                        {% if user.phone == "" %}
+                        No info
+                        {% else %}
+                        {{user.phone}}
+                        {% endif %}
                     </div>
                 </div>
             </div>

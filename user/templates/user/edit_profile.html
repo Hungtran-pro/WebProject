@@ -59,7 +59,7 @@
             </form>
             
             <div class="chat-list">
-                {% for user_dict in users %}
+                {% for user_dict in list_user %}
                 <div class="friend">
                     <a class="btn left-side" href="{% build_chat_url user.username user_dict.username %}"><strong>{{user_dict.first_name}} {{user_dict.last_name}}</strong></a>
  
@@ -80,7 +80,12 @@
     <form method="POST">
         <div class="pro-info">
             <div class="info-left">
-                <img src="{% static 'images/profile.png' %}" class="info-avatar">
+                {% if user.avatar == "" %}
+                    <img src="{% static 'images/profile.png' %}" class="info-avatar">        
+                {%else%}
+                    <img src="{{ user.avatar }}" class="info-avatar">        
+                {% endif %}
+            
 
                 <div>
                     <input class="update-info" type="submit" name="submit" value="update">
@@ -114,6 +119,14 @@
                             {{user_form.last_name}}
                         </div>
                     </div>
+                    <div class="content-items">
+                        <div class="info-label">
+                            Phone
+                        </div>
+                        <div class="info-info">
+                            {{user_form.phone}}
+                        </div>
+                    </div>
                 </div>
     
                 <div class="content-left">
@@ -143,12 +156,13 @@
                     </div>
                     <div class="content-items">
                         <div class="info-label">
-                            Phone Number
+                            avatar
                         </div>
                         <div class="info-info">
-                            Nope
+                            {{user_form.avatar}}
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

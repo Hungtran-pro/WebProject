@@ -6,3 +6,5 @@ class MyUser(AbstractUser):
     dob = models.CharField(max_length=250,default='')
     sex = models.CharField(max_length=250)
     address = models.CharField(max_length=255)
+    avatar = models.CharField(max_length=250,default='')
+    phone=models.CharField(max_length=11,default='')

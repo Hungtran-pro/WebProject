@@ -130,7 +130,12 @@ class EditProfile(forms.ModelForm):
     address = forms.CharField(required=False,
         widget=forms.TextInput(attrs={"class": "edit"})
     )
-
+    avatar=forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    phone=forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
     class Meta:
         model = MyUser
-        fields = ['first_name', 'last_name','dob','sex','address','email']   
+        fields = ['first_name', 'last_name','dob','sex','address','email','avatar','phone']   

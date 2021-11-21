@@ -69,14 +69,14 @@ class Profile(LoginRequiredMixin,TemplateView):
 		context['users']=MyUser.objects.exclude(id=self.request.user.id).values('username','first_name','last_name','sex')
 		return context
 			
-	def get_queryset(self):
-		all_users = MyUser.objects.all()
-		search = self.request.GET.get('search')
-		if search:
-			all_users=MyUser.objects.filter(
-        	Q(first_name__icontains=search) |
-			Q(last_name__icontains=search))
-		return all_users
+	# def get(self,request):
+	# 	all_users = MyUser.objects.all()
+	# 	search = request.GET.get('search')
+	# 	if search:
+	# 		all_users=MyUser.objects.filter(
+    #     	Q(first_name__icontains=search) |
+	# 		Q(last_name__icontains=search))
+	# 	return all_users
 
 class Receiver_Profile(LoginRequiredMixin,TemplateView):
 	models = Message

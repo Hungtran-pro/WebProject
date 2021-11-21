@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate,login
 from django.shortcuts import redirect,render,HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from .forms import Register,EditProfile
-
+from .models import MyUser
 def Register_User(request):
     form = Register
     message=''
@@ -29,10 +29,12 @@ def edit(request):
             return redirect("index")
     else:
         user_form=EditProfile(instance=request.user)	
+    list_user=MyUser.objects.exclude(id=request.user.id).values('username','first_name','last_name','sex')
     return render(
         request=request,
         template_name='user/edit_profile.html',
         context={
-            'user_form':user_form
+            'user_form':user_form,
+            'list_user':list_user
         }
     )

@@ -79,7 +79,11 @@
 
     <div class="pro-info">
         <div class="info-left">
-            <img src="{% static 'images/profile.png' %}" class="info-avatar">
+            {% if receiver.avatar == "" %}
+                    <img src="{% static 'images/profile.png' %}" class="info-avatar">        
+                {%else%}
+                    <img src="{{receiver.avatar}}" class="info-avatar">        
+                {% endif %}
             
             <div>
                 <a class="btn contact-button" href="{% build_chat_url user.username receiver.username %}">Contact</a>
@@ -165,10 +169,14 @@
                 </div>
                 <div class="content-items">
                     <div class="info-label">
-                        Phone Number
+                        Phone
                     </div>
                     <div class="info-info">
-                        Nope
+                        {% if receiver.phone == "" %}
+                        No info
+                        {% else %}
+                        {{receiver.phone}}
+                        {% endif %}
                     </div>
                 </div>
             </div>

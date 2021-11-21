@@ -20,7 +20,7 @@
         <div class="test">
             <h3>To: {{receiver.first_name}} {{receiver.last_name}} <a class="btn btn-danger float-right" href="{% url 'index' %}" role="button">Exit</a> </h3>
         </div>
-        <div class="chat-box">
+        <div class="chat-box" >
             <div id="chat-messages" class="card card-body card-chat text-left"> </div>
         </div>
         <div class="mess-line">
@@ -41,11 +41,13 @@
 <script src="{% static 'reconnecting-websocket.js' %}"></script>
 <script type="text/javascript">
     $(function () {
+        function updateScroll(){
+            var last_msg=document.querySelector('#chat-messages');
+            last_msg.lastChild.scrollIntoView();
+        }
         function addMessageToChat(data) {
             $("#chat-messages").append("<b>" + data['username'] + ":</b> <p>" + data['message'] + "</p><br>");
         };
-
-   
         $.getJSON("{% url 'messages' request.resolver_match.kwargs.room_name %}", function(data) {
             // Add each previous message to the chat.
             $.each(data, function(index, value) {
