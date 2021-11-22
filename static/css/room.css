@@ -5,6 +5,15 @@
     font-family: 'Roboto', sans-serif;
 }
 
+nav {
+    margin: 0;
+}
+
+.receiver-fullname {
+    font-size: 25px;
+    font-weight: 600;
+}
+
 .icon {
     font-size: 30px;
 }
@@ -22,15 +31,9 @@
     background-size: cover;
 }
 
-/* .chat-left {
-    flex: 15%;
-
-    background-color: white;
-
-    border-radius: 0px 5px 5px 0px;
-
-    margin-right: 0.5vw;
-} */
+.chat-nav {
+    flex: 100%;
+}
 
 .chat-right {
     flex: 100%;
@@ -39,17 +42,6 @@
     flex-wrap: wrap;
 
     width: 100vw;
-}
-
-.test {
-    flex: 100%;
-    background-color: white;
-    
-    border-radius: 5px;
-
-    height: 8vh;
-
-    margin-bottom: 0.01vh;
 }
 
 .chat-box {
@@ -108,13 +100,11 @@
     color: #30db00;
 }
 
-@media screen {   
-    .card-chat p {
-        margin-bottom: 0;
-    }
-}
-
 @media(max-width: 1300px) {
+    nav {
+        border-radius: 0 !important;
+    }
+
     .chat-left {
         border-radius: 0 !important;
     }

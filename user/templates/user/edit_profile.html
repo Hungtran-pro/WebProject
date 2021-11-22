@@ -41,10 +41,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <button class="nav-item btn" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                        <i class='nav-link bx bxl-messenger icon'></i>
-                    </button>
                     <button class="nav-item btn" type="button">
                         <a role="button" href="/chat/{{user.username}}/profile">
                             <i class='nav-link bx bx-user-circle icon'></i>
@@ -61,38 +57,6 @@
             </div>
         </div>
     </nav>
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h1 id="offcanvasRightLabel"> <strong>Your Friends</strong></h1>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-
-        <div class="offcanvas-body">
-            <form class="d-flex" action="">
-                <input id='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                    name="search">
-                <button class="btn btn-outline-success" type="button">
-                    <i class='bx bx-search-alt'></i>
-                </button>
-            </form>
-
-            <div class="chat-list" id='friend'>
-                {% for user_dict in users %}
-                <div class="friend">
-                    <a class="btn left-side" href="{% build_chat_url user.username user_dict.username %}">
-                        {{user_dict.first_name}} {{user_dict.last_name}}
-                    <a class="btn right-side" href="/chat/{{user_dict.username}}/receiverprofile">
-                        <i class='bx bxs-user-account icon receiver'></i>
-                    </a>
-                </div>
-
-                {% empty %}
-                <p class="text-muted">Ups! no users to chat with.</p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
 
     <br>
 
