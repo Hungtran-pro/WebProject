@@ -1,0 +1,86 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-center {
+    background-image: url("../images/BackGround.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Content of page */
+.container {
+    padding: 0;
+}
+
+nav {
+    border-radius: 12px;
+    margin-top: 3vh;
+}
+
+.nav-item:hover {
+    background-color: #e3e3e3 !important;
+}
+
+.home_button {
+    width: 50px;
+    height: 50px;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+/* List Friends */
+.offcanvas {
+    border-radius: 12px 0px 0px 12px;
+}
+
+.offcanvas-header {
+    margin-top: 10px;
+}
+
+.chat-list {
+    margin-top: 50px;
+}
+
+/* List Friends' item */
+.friend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin-top: 25px;
+}
+
+.left-side {
+    flex: 80%;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    transition: 0.5s;
+}
+
+.left-side:hover {
+    background-color: #e3e3e3 !important;
+}
+
+.right-side {
+    flex: 10%;
+
+    color: blue;
+    transition: 0.3s;
+}
+
+.right-side:hover {
+    color: #00c3ff;
+}
+
+.friend a {
+    text-decoration: none;
+}
