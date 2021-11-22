@@ -66,8 +66,10 @@
 .card-chat {
     border-color: #eeeeee;
 
-    border-radius: 0 !important;
+    height: 82.5vh;
+    overflow-y: scroll;
 
+    border-radius: 0 !important;
     margin: 0px 0px 0px 40px;
 }
 
@@ -106,12 +108,7 @@
     color: #30db00;
 }
 
-@media screen {
-    .card-chat {
-        height: 82.5vh;
-        overflow-y: scroll;
-    }
-    
+@media screen {   
     .card-chat p {
         margin-bottom: 0;
     }

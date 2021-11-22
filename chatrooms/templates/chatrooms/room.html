@@ -40,11 +40,17 @@
 
 <script src="{% static 'reconnecting-websocket.js' %}"></script>
 <script type="text/javascript">
+    $('#chat-messages').stop().animate({
+        scrollTop: $('#chat-messages')[0].scrollHeight
+        }, "fast"
+    );
+
     $(function () {
-        function updateScroll(){
-            var last_msg=document.querySelector('#chat-messages');
-            last_msg.lastChild.scrollIntoView();
-        }
+        // function updateScroll(){
+        //     var last_msg=document.querySelector('#chat-messages');
+        //     last_msg.lastChild.scrollIntoView();
+        // }
+
         function addMessageToChat(data) {
             $("#chat-messages").append("<b>" + data['username'] + ":</b> <p>" + data['message'] + "</p><br>");
         };

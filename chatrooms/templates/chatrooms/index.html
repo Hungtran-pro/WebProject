@@ -17,7 +17,7 @@
     $(document).ready(function () {
         $("#search").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#friend p").filter(function () {
+            $("#friend div").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
@@ -78,22 +78,17 @@
             <div class="chat-list" id='friend'>
                 {% for user_dict in users %}
                 <div class="friend">
-                    <a class="btn left-side"
-                        href="{% build_chat_url user.username user_dict.username %}"><p>{{user_dict.first_name}}
-                            {{user_dict.last_name}} <a class="btn right-side" href="/chat/{{user_dict.username}}/receiverprofile">
-                                <i class='bx bxs-user-account icon receiver'></i>
-                            </a> </p></a>
-
-                    
+                    <a class="btn left-side" href="{% build_chat_url user.username user_dict.username %}">
+                        {{user_dict.first_name}} {{user_dict.last_name}}
+                    <a class="btn right-side" href="/chat/{{user_dict.username}}/receiverprofile">
+                        <i class='bx bxs-user-account icon receiver'></i>
+                    </a>
                 </div>
 
                 {% empty %}
                 <p class="text-muted">Ups! no users to chat with.</p>
                 {% endfor %}
             </div>
-
-
-
         </div>
     </div>
 
