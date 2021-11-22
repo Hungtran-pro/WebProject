@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.forms import Form
 from django import forms
 from django.forms.models import ModelForm
-
+import re
 class Register(Form):
     username = forms.CharField(
         label="UserName",
@@ -90,12 +90,25 @@ class Register(Form):
         except MyUser.DoesNotExist:
             return inputed_email
 
-    def clean_confirm_password(self):
+    def clean_password(self):
+        self.password_input = None
         inputed_password = self.cleaned_data['password']
-        inputed_confirm_password =self.cleaned_data['confirm_password']   
-        if inputed_password != inputed_confirm_password:
-            raise ValidationError("password and confirm password do match")
-        return inputed_confirm_password
+        if not re.findall('[A-Za-z]',  inputed_password) or len(inputed_password)<8:
+            raise ValidationError(
+                "Your password can't be entirely numeric and must contain at least 8 characters."
+
+                )
+
+        else:
+            self.password_input = 'success'
+            return inputed_password
+    def clean_confirm_password(self):
+            if self.password_input == 'success':
+                inputed_password = self.cleaned_data['password']
+                inputed_confirm_password =self.cleaned_data['confirm_password']
+                if inputed_password != inputed_confirm_password:
+                    raise ValidationError("password and confirm password do match")
+                return inputed_confirm_password
         
     def save_user(self,**extra_fields):
         extra_fields.setdefault('is_staff', True)
