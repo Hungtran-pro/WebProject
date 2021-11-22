@@ -144,7 +144,13 @@
         websocket.onclose = function (e) {
             alert('There was a problem. Please refresh the page.');
         };
-
+        $("#message").keyup(function(e){
+            if(e.keyCode == 13)
+            {
+                $("#send-message").click();
+            }
+        });
+        
         $("#send-message").click(function () {
             // Prevent user sending empty messages.
             if ($("#message").val() === "") { return };
