@@ -19,11 +19,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <div class="navbar-brand" href="">
-                    {% if receiver.avatar == "" %}
-                        <img src="{% static 'images/profile.png' %}" class="rounded-circle home_button">        
-                    {% else %}
-                        <img src="{{receiver.avatar}}" class="rounded-circle home_button">        
-                    {% endif %}
+                    <a role="button" href="/chat/{{receiver.username}}/receiverprofile">
+                        {% if receiver.avatar == "" %}
+                            <img src="{% static 'images/profile.png' %}" class="rounded-circle home_button">        
+                        {% else %}
+                            <img src="{{receiver.avatar}}" class="rounded-circle home_button">        
+                        {% endif %}
+                    </a>
                 </div>
         
                 <div class="receiver-fullname"> {{receiver.first_name}} {{receiver.last_name}} </div>
@@ -38,11 +40,6 @@
                         <button class="nav-item btn" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <i class='nav-link bx bxl-messenger icon'></i>
-                        </button>
-                        <button class="nav-item btn" type="button">
-                            <a role="button" href="/chat/{{receiver.username}}/receiverprofile">
-                                <i class='nav-link bx bxs-user-account icon'></i>
-                            </a>
                         </button>
                     </ul>
                     <ul class="navbar-nav me-0 mb-2 mb-lg-0">
@@ -110,14 +107,11 @@
 
 <script src="{% static 'reconnecting-websocket.js' %}"></script>
 <script type="text/javascript">
-    $('#chat-messages').stop().animate({
-        scrollTop: $('#chat-messages')[0].scrollHeight
-        }, "fast"
-    );
+    
 
     $(document).ready(function() {
         $("#send-message").click(function() {
-            $('#chat-messages').stop().animate({
+            $('#chat-messages').animate({
                 scrollTop: $('#chat-messages')[0].scrollHeight
                 }, "fast"
             );
@@ -131,16 +125,40 @@
         // }
 
         function addMessageToChat(data) {
-            $("#chat-messages").append("<b>" + data['username'] + ":</b> <p>" + data['message'] + "</p><br>");
+            if(data['username'] === "{{user.username}}") {
+                $("#chat-messages").append(
+                    "<div class='mess-box-user'>" +
+                        "<div class='mess-name-user ms-auto'>" + data['username'] + ":" + "</div>" +
+                        "<div class='mess-content-user ms-auto'>" + 
+                            "<blockquote>" + data['message'] + "</blockquote>" +
+                        "</div>" +
+                    "</div>"
+                );
+            } else {
+                $("#chat-messages").append(
+                    "<div class='mess-box-receiver'>" +
+                        "<div class='mess-name-receiver me-auto'>" + data['username'] + ":"  + "</div>" +
+                        "<div class='mess-content-receiver me-auto'>" +
+                            "<blockquote>" + data['message'] + "</blockquote>" +
+                        "</div>" +
+                    "</div>"
+                );
+            }
         };
+
+
         $.getJSON("{% url 'messages' request.resolver_match.kwargs.room_name %}", function(data) {
             // Add each previous message to the chat.
             $.each(data, function(index, value) {
                addMessageToChat(value);
             });
-            
 
+            $('#chat-messages').animate({
+                scrollTop: $('#chat-messages')[0].scrollHeight
+                }, "fast"
+            );
         });
+
         websocket = new ReconnectingWebSocket(
             'ws://' + window.location.host +
             '/ws/chat/{{ request.resolver_match.kwargs.room_name }}/');

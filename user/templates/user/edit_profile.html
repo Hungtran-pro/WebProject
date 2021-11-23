@@ -66,7 +66,7 @@
                 {% if user.avatar == "" %}
                     <img src="{% static 'images/profile.png' %}" class="info-avatar">        
                 {% else %}
-                    <img src="{{ user.avatar }}" class="info-avatar">        
+                    <img src="{{ user.avatar }}" class="info-avatar rounded-circle">        
                 {% endif %}
 
                 <div>
