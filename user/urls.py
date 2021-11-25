@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
+from chatrooms.urls import urlpatterns
 from . import views
 
 urlpatterns=[
