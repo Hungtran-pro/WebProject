@@ -1,0 +1,195 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    margin: 0;
+}
+
+.receiver-fullname {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+.chat-zone {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("../images/BackGround.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.chat-nav {
+    flex: 100%;
+}
+
+.chat-right {
+    flex: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100vw;
+}
+
+.chat-box {
+    flex: 100%;
+
+    height: fit-content;
+
+    background-color: #eeeeee;
+
+    border-radius: 5px;
+}
+
+
+.card-chat {
+    border-color: #eeeeee;
+
+    height: 82.5vh;
+    overflow-y: scroll;
+
+    border-radius: 0 !important;
+    margin: 0px 0px 0px 40px;
+}
+
+blockquote {
+    border-radius: .35em;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: .5em;
+}
+
+.mess-box-user {
+    margin-bottom: 50px;
+}
+
+.mess-name-user {
+    width: fit-content;
+}
+
+.mess-content-user {
+    width: fit-content;
+
+    word-break: break-word;
+    max-width: 564px;
+    word-wrap: break-word;
+}
+
+.mess-box-receiver {
+    margin-bottom: 50px;
+}
+
+.mess-name-receiver {
+    width: fit-content;
+}
+
+.mess-content-receiver {
+    width: fit-content;
+
+    word-break: break-word;
+    max-width: 564px;
+    word-wrap: break-word;
+}
+
+.mess-content-receiver blockquote::before, .mess-content-user blockquote::after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+}
+
+.mess-box-receiver blockquote {
+    background-color: #0099cc; margin-left: 1em;
+}
+
+.mess-content-receiver blockquote::before {
+    border: .5em solid #0099cc;
+    border-color: #0099cc #0099cc transparent transparent;
+    top: .5em;
+    left: -1em;
+}
+
+.mess-box-user blockquote {
+    background-color: #FFBB73;
+}
+
+.mess-content-user blockquote::after {
+    border: .5em solid #FFBB73;
+    border-color: #FFBB73 transparent transparent #FFBB73;
+    top: .5em;
+    right: -1em;
+}
+
+.mess-line {
+    flex: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+
+    background-color: white;
+
+    border-radius: 5px;
+    padding: 8px 20px 8px 40px;
+    margin-top: 0.01vh;
+
+    align-items: center;
+}
+
+.mess-form {
+    flex: 90%;
+}
+
+#message {
+    border-radius: 30px;
+}
+
+.mess-send {
+    flex: 1%;
+}
+
+#send-message {
+    color: #209600;
+}
+
+#send-message:hover {
+    color: #30db00;
+}
+
+
+
+@media(max-width: 1300px) {
+    nav {
+        border-radius: 0 !important;
+    }
+
+    .chat-left {
+        border-radius: 0 !important;
+    }
+
+    .test {
+        border-radius: 0 !important;
+    }
+
+    .chat-box {
+        border-radius: 0 !important;
+    }
+
+    .mess-line {
+        border-radius: 0 !important;
+    }
+}

@@ -18,7 +18,7 @@
 }
 
 nav {
-    border-radius: 12px;
+    border-radius: 5px;
     margin-top: 3vh;
 }
 
@@ -61,12 +61,13 @@ nav {
     flex: 80%;
 
     font-size: 20px;
+    font-weight: 600;
+
     transition: 0.5s;
 }
 
 .left-side:hover {
-    background: linear-gradient(60deg, #00c3ff, #ffff1c);
-    color: honeydew;
+    background-color: #e3e3e3 !important;
 }
 
 .right-side {

@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.forms import Form
 from django import forms
 from django.forms.models import ModelForm
-
+import re
 class Register(Form):
     username = forms.CharField(
         label="UserName",
@@ -15,6 +15,7 @@ class Register(Form):
             }
         )
     )
+
     password = forms.CharField(
         label="PassWord",
         widget=forms.PasswordInput(
@@ -24,6 +25,7 @@ class Register(Form):
             }
         )
     )
+
     confirm_password = forms.CharField(
         label="Confirm Password",
         widget=forms.PasswordInput(
@@ -33,6 +35,7 @@ class Register(Form):
             }
         )
     )
+
     first_name = forms.CharField(
         label="First Name",
         widget=forms.TextInput(
@@ -42,6 +45,7 @@ class Register(Form):
             }
         )
     )
+
     last_name = forms.CharField(
         label="Last Name",
         widget=forms.TextInput(
@@ -51,15 +55,7 @@ class Register(Form):
             }
         )
     )
-    # Choices=(
-    #     ('1','Male'),
-    #     ('2','Female'),
-    #     ('3','Other')
-    # )
-    # sex=forms.CharField(
-    #     label="Sex",
-    #     widget=forms.Select(choices=Choices)
-    # )
+
     email = forms.CharField(
         label="Email",
         widget=forms.EmailInput(
@@ -69,6 +65,7 @@ class Register(Form):
             }
         )
     )
+    
     def clean_username(self):
         inputed_username = self.cleaned_data['username']
         try:
@@ -85,12 +82,25 @@ class Register(Form):
         except MyUser.DoesNotExist:
             return inputed_email
 
-    def clean_confirm_password(self):
+    def clean_password(self):
+        self.password_input = None
         inputed_password = self.cleaned_data['password']
-        inputed_confirm_password =self.cleaned_data['confirm_password']   
-        if inputed_password != inputed_confirm_password:
-            raise ValidationError("password and confirm password do match")
-        return inputed_confirm_password
+        if not re.findall('[A-Za-z]',  inputed_password) or len(inputed_password) < 8 or not re.findall('[0-9]',  inputed_password):
+            raise ValidationError(
+                "Your password can't be entirely numeric and must contain at least 8 characters."
+
+                )
+
+        else:
+            self.password_input = 'success'
+            return inputed_password
+    def clean_confirm_password(self):
+            if self.password_input == 'success':
+                inputed_password = self.cleaned_data['password']
+                inputed_confirm_password =self.cleaned_data['confirm_password']
+                if inputed_password != inputed_confirm_password:
+                    raise ValidationError("password and confirm password do match")
+                return inputed_confirm_password
         
     def save_user(self,**extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -104,18 +114,33 @@ class Register(Form):
             # sex=self.cleaned_data['sex'],
             email=self.cleaned_data['email'],
             **extra_fields
-
         )
+
 class EditProfile(forms.ModelForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-    dob=forms.CharField(label='Date of Birth',required=False)
-    sex = forms.CharField(required=False)
-    address = forms.CharField(required=False)
-
-
-
+    email = forms.EmailField(required=True, 
+        widget=forms.EmailInput(attrs={"class": "edit"})
+    )
+    first_name = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    last_name = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    dob=forms.CharField(label='Date of Birth',required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    sex = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    address = forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    avatar=forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
+    phone=forms.CharField(required=False,
+        widget=forms.TextInput(attrs={"class": "edit"})
+    )
     class Meta:
         model = MyUser
-        fields = ['first_name', 'last_name','dob','sex','address','email']   
+        fields = ['first_name', 'last_name','dob','sex','address','email','avatar','phone']   

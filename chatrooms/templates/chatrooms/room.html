@@ -4,52 +4,122 @@
 
 {% block title %}Chat{% endblock %}
 {% block head %}
-<style media="screen">
-    .container .card {
-        max-width: 800px;
-    }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<link href="{% static 'css/navbar_and_chatlist.css' %}" rel="stylesheet">
+<link href="{% static 'css/room.css' %}" rel="stylesheet">
 
-    .card-chat {
-        height: 300px;
-        overflow-y: scroll;
-    }
-
-    .card-chat p {
-        margin-bottom: 0;
-    }
-</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="card card-body mx-auto text-left">
-        <h3>To: {{ receiver.username }} <a class="btn btn-danger float-right"
-                href="{% url 'index' %}" role="button">Exit</a></h3>
-        <div id="chat-messages" class="card card-body card-chat text-left">
-        </div>
-        <input id="message" class="form-control mt-2 " type="text" placeholder="Type your message...">
-        <button id="send-message" class="btn btn-primary float-right mt-2">Send</button>
+<div class="chat-zone text-left">
+    <div class="chat-nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-brand" href="">
+                    <a role="button" href="/chat/{{receiver.username}}/receiverprofile">
+                        {% if receiver.avatar == "" %}
+                            <img src="{% static 'images/profile.png' %}" class="rounded-circle home_button">        
+                        {% else %}
+                            <img src="{{receiver.avatar}}" class="rounded-circle home_button">        
+                        {% endif %}
+                    </a>
+                </div>
+        
+                <div class="receiver-fullname"> {{receiver.first_name}} {{receiver.last_name}} </div>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0"></ul>
+                    <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                        <button class="nav-item btn" type="button">
+                            <a role="button" href="/chat">
+                                <i class='nav-link bx bx-log-out icon'></i>
+                            </a>
+                        </button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
 
-
+    <div class="chat-right">
+        <div class="chat-box" >
+            <div id="chat-messages" class="card card-body card-chat text-left"> </div>
+        </div>
+        <div class="mess-line">
+            <div class="mess-form">
+                <input id="message" class="form-control" type="text" placeholder="Type your message...">
+            </div>
+            <div class="mess-send">
+                <a id="send-message" class="btn float-right">
+                    <i class='bx bx-send icon' ></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
-<script src="{% static 'reconnecting-websocket.js'%}"></script>
+
+<script src="{% static 'reconnecting-websocket.js' %}"></script>
 <script type="text/javascript">
+    $(document).ready(function() {
+        $("#send-message").click(function() {
+            $('#chat-messages').animate({
+                scrollTop: $('#chat-messages')[0].scrollHeight
+                }, "fast"
+            );
+        });
+    });
+
     $(function () {
+        // function updateScroll(){
+        //     var last_msg=document.querySelector('#chat-messages');
+        //     last_msg.lastChild.scrollIntoView();
+        // }
+
         function addMessageToChat(data) {
-            $("#chat-messages").append("<b>" + data['username'] + ":</b> <p>" + data['message'] + "</p><br>");
+            if(data['username'] === "{{user.username}}") {
+                $("#chat-messages").append(
+                    "<div class='mess-box-user'>" +
+                        "<div class='mess-name-user ms-auto'>" + data['username'] + ":" + "</div>" +
+                        "<div class='mess-content-user ms-auto'>" + 
+                            "<blockquote>" + data['message'] + "</blockquote>" +
+                        "</div>" +
+                    "</div>"
+                );
+            } else {
+                $("#chat-messages").append(
+                    "<div class='mess-box-receiver'>" +
+                        "<div class='mess-name-receiver me-auto'>" + data['username'] + ":"  + "</div>" +
+                        "<div class='mess-content-receiver me-auto'>" +
+                            "<blockquote>" + data['message'] + "</blockquote>" +
+                        "</div>" +
+                    "</div>"
+                );
+            }
         };
 
-   
+
         $.getJSON("{% url 'messages' request.resolver_match.kwargs.room_name %}", function(data) {
             // Add each previous message to the chat.
             $.each(data, function(index, value) {
                addMessageToChat(value);
             });
-            
 
+            $('#chat-messages').animate({
+                scrollTop: $('#chat-messages')[0].scrollHeight
+                }, "fast"
+            );
         });
+
         websocket = new ReconnectingWebSocket(
             'ws://' + window.location.host +
             '/ws/chat/{{ request.resolver_match.kwargs.room_name }}/');
@@ -63,7 +133,13 @@
         websocket.onclose = function (e) {
             alert('There was a problem. Please refresh the page.');
         };
-
+        $("#message").keyup(function(e){
+            if(e.keyCode == 13)
+            {
+                $("#send-message").click();
+            }
+        });
+        
         $("#send-message").click(function () {
             // Prevent user sending empty messages.
             if ($("#message").val() === "") { return };
